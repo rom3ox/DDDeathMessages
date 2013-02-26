@@ -1,0 +1,109 @@
+#============================
+#= DDDeathMessages Options: =
+#============================
+options:
+	#=============================
+	#= Prefix and Color Options: =
+	#=============================
+	DD.Death.Message.Prefix: [DDDeath]
+	DD.Death.Message.Prefix.Color: <yellow>
+	DD.Death.Message.Message.Color: <gray>
+	DD.Death.Message.Prefix.Complete: {@DD.Death.Message.Prefix.Color}{@DD.Death.Message.Prefix}{@DD.Death.Message.Message.Color}
+
+	#==================
+	#= Death Messages =
+	#==================
+	DD.Death.message.player.arrow: {@DD.Death.Message.Prefix.Complete}%attacker% ha matado a %victim% de un flechazo.
+	DD.Death.message.player.air: {@DD.Death.Message.Prefix.Complete}%attacker% ha matado a %victim% con su puño de hierro.
+	DD.Death.message.player.default: {@DD.Death.Message.Prefix.Complete}%attacker% ha matado a %victim% con %tool of attacker%.
+	DD.Death.message.player.others: {@DD.Death.Message.Prefix.Complete}%victim% ha muerto de alguna de las 599 maneras de morir raras que hay en DDCraft.
+
+	#=========
+	#= MOBs: =
+	#=========
+
+	#============ Hostile Mobs (Monsters!) ============#
+	DD.Death.message.zombie: {@DD.Death.Message.Prefix.Complete}Un zombie ha matado a %victim% de un abrazo.
+	DD.Death.message.skeleton: {@DD.Death.Message.Prefix.Complete}Un skeleto ha matado a %victim% con sus flechas de amor.
+	DD.Death.message.creeper: {@DD.Death.Message.Prefix.Complete}Un creeper mato a %victim% en una explosion de jubilo!
+	DD.Death.message.spider: {@DD.Death.Message.Prefix.Complete}Una araña atrapó en sus redes a %victim%.
+	DD.Death.message.slime: {@DD.Death.Message.Prefix.Complete}Un slime ha matado a %victim%.
+	DD.Death.message.cave_spider: {@DD.Death.Message.Prefix.Complete}Una araña de cueva ha matado a %victim%.
+	DD.Death.message.blaze: {@DD.Death.Message.Prefix.Complete}Un blaze ha matado a %victim%.
+	DD.Death.message.ghast: {@DD.Death.Message.Prefix.Complete}Un ghast ha matado a %victim%.
+	DD.Death.message.magma_cube: {@DD.Death.Message.Prefix.Complete}Un magma cube ha matado a %victim%.
+
+	#============ Bosses Mobs ============#
+	DD.Death.message.ender_dragon: {@DD.Death.Message.Prefix.Complete}Un Ender Dragon ha matado a %victim%.
+	DD.Death.message.giant: {@DD.Death.Message.Prefix.Complete}Un gigante ha aplastado a %victim%.
+
+	#============ Ally Mobs ============#
+	DD.Death.message.iron_golem: {@DD.Death.Message.Prefix.Complete}Un golem de hierro ha matado a %victim%
+	
+	#============ Neutral Mobs ============#
+	DD.Death.message.zombie_pigman: {@DD.Death.Message.Prefix.Complete}Zombie Pigman ha matado a %victim%.
+	DD.Death.message.wolf: {@DD.Death.Message.Prefix.Complete}Un lobo furioso ha matado a %victim%.
+	DD.Death.message.endermen: {@DD.Death.Message.Prefix.Complete}Un Endermen ha teletransportado a %victim% a la muerte.
+
+on death of player:
+	if attacker is a player:
+		if projectile is an arrow:
+			set death message to "{@DD.Death.message.player.arrow}"
+			stop
+		if tool of attacker is air:
+			set death message to "{@DD.Death.message.player.air}"
+			stop
+		else:
+			set death message to "{@DD.Death.message.player.default}"
+			stop
+	else:
+		if attacker is a Zombie:
+			set death message to "{@DD.Death.message.zombie}" 
+			stop
+		if attacker is a Skeleton:
+			set death message to "{@DD.Death.message.skeleton}"
+			stop
+		if attacker is a Creeper:
+			set death message to "{@DD.Death.message.creeper}"
+			stop
+		if attacker is a Spider:
+			set death message to "{@DD.Death.message.spider}"
+			stop
+		if attacker is a Slime:
+			set death message to "{@DD.Death.message.slime}" 
+			stop
+		if attacker is a Cave Spider:
+			set death message to "{@DD.Death.message.cave_spider}" 
+			stop
+		if attacker is a Blaze:
+			set death message to "{@DD.Death.message.blaze}" 
+			stop
+		if attacker is a Ghast:
+			set death message to "{@DD.Death.message.ghast}" 
+			stop
+		if attacker is a Magma Cube:
+			set death message to "{@DD.Death.message.magma_cube}" 
+			stop
+		if attacker is a Ender Dragon:              
+			set death message to "{@DD.Death.message.ender_dragon}"
+			stop
+		if attacker is a Iron Golem:              
+			set death message to "{@DD.Death.message.iron_golem}"  
+			stop
+		if attacker is a Zombie Pigman:              
+			set death message to "{@DD.Death.message.zombie_pigman}" 
+			stop
+		if attacker is a Wolf:
+			set death message to "{@DD.Death.message.wolf}" 
+			stop
+		if attacker is a Endermen:
+			set death message to "{@DD.Death.message.endermen}" 
+			stop
+		if attacker is a Giant:
+			set death message to "@DD.Death.message.giant" 
+			stop
+		# Add Fall Death.
+		# quemado, ahogado, suffocado, 
+		else:
+			set death message to "{@DD.Death.message.player.others}"
+			stop
